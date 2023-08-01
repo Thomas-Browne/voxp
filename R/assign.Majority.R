@@ -1,5 +1,6 @@
 #' Return the most frequent value in a nominated column for each unique identifier.
 #'
+#' @description Return the most frequent value if proportion is equal to, or exceeds defined threshold, or 80% of all observables.
 #' @param data Define the dataset to apply the code to
 #' @param identifier A column containing a unique identifier
 #' @param column The column to evaluate
@@ -14,6 +15,9 @@
 #' @examples assign.Majority(Employee_data, Employee_data$Employee_ID, Employee_data$Start_time)
 #' @examples assign.Majority(Patient_data, Patient_data$Patient_number, Patient_data$Country_of_birth, 0.7)
 #' @examples assign.Majority(data = Patient_data, identifier = Patient_data$Patient_number, column = Patient_data$Country_of_birth, proportion_threshold = 0.5)
+#'
+#' @examples Country <- assign.Majority(Patient_data, Patient_data$Patient_number, Patient_data$Country_of_birth, 0.7)
+#' Patient_data %>% left_join(Country, by = Patient_data$Patient_number)
 
 assign.Majority <- function(data, identifier, column, proportion_threshold = 0.8) {
   setDT(data)
