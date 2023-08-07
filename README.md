@@ -36,6 +36,6 @@ assign.majority(data, id, color, threshold = 0.5)
 
 Contributions to this package are welcome. You can contribute by:
 
-- Reporting bugs or issues on [GitHub].
-- Suggesting new features or improvements on [GitHub].
+- Reporting bugs or issues on GitHub.
+- Suggesting new features or improvements on GitHub.
 - Forking this repository and submitting a pull request.
