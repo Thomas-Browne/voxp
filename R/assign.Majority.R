@@ -20,21 +20,26 @@
 #' Patient_data %>% left_join(Country, by = Patient_data$Patient_number)
 
 assign.Majority <- function(data, identifier, column, proportion_threshold = 0.8) {
-  setDT(data)
 
-  # Count the sum of all entries in variable column by unique identifier in a new variable: "N"
-  variable_counts <- data[, .N, by = .(identifier,
-                                       column)]
-  # Define a new variable: "prop", that calculated the proportion of variable entry data
-  variable_proportions <- variable_counts[, .(prop = N/sum(N),
-                                              column),
-                                          by = identifier]
+  variable_counts <- data %>%
+    dplyr::group_by(dplyr::across(dplyr::all_of(c(identifier, column)))) %>%
+    dplyr::summarise(N = n(), .groups = 'drop')
 
-  # Test if the maximum proportion surpasses the proportional threshold. If true, returns the variable, else returns "Did not meet threshold".
-  Assigned_value <- variable_proportions[, .(Assigned_value = ifelse(max(prop) > proportion_threshold,
-                                                                     column[which.max(prop)],
-                                                                     paste0("Did not meet threshold (", round(max(prop)*100, 2),"%)"))),
-                                         by = identifier]
+
+  variable_proportions <- variable_counts %>%
+    dplyr::group_by(dplyr::across(dplyr::all_of(c(identifier)))) %>%
+    dplyr::mutate(prop = n/sum(n)) %>%
+    dplyr::ungroup()
+
+  Assigned_value <- variable_proportions %>%
+    dplyr::group_by(dplyr::across(dplyr::all_of(c(identifier)))) %>%
+    mutate(Assigned_value = ifelse(max(prop) >= proportion_threshold,
+                                   get(column)[which.max(prop)],
+                                   paste0("Did not meet threshold (",
+                                          round(max(prop)*100, 2),"%)"))) %>%
+    dplyr::ungroup()
+
+
   # Return assigned country
   return(Assigned_value)
 }

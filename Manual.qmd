@@ -76,7 +76,7 @@ data <- data.frame(
   colour = c("red", "red", "blue", "green", "green", "green")
 )
 
-assign.majority(data, id, colour, threshold = 0.5)
+assign.Majority(data, data$id, data$colour, proportion_threshold = 0.5)
 #>   id colour
 #> 1  1   red
 #> 2  2 green
