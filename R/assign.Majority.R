@@ -28,7 +28,7 @@ assign.Majority <- function(data, identifier, column, proportion_threshold = 0.8
 
   variable_proportions <- variable_counts %>%
     dplyr::group_by(dplyr::across(dplyr::all_of(c(identifier)))) %>%
-    dplyr::mutate(prop = n/sum(n)) %>%
+    dplyr::mutate(prop = N/sum(N)) %>%
     dplyr::ungroup()
 
   Assigned_value <- variable_proportions %>%
@@ -37,7 +37,8 @@ assign.Majority <- function(data, identifier, column, proportion_threshold = 0.8
                                    get(column)[which.max(prop)],
                                    paste0("Did not meet threshold (",
                                           round(max(prop)*100, 2),"%)"))) %>%
-    dplyr::ungroup()
+    dplyr::ungroup() %>%
+    dplyr::select(identifier, column, Assigned_value)
 
 
   # Return assigned country
