@@ -76,7 +76,7 @@ data <- data.frame(
   colour = c("red", "red", "blue", "green", "green", "green")
 )
 
-assign.Majority(data, data$id, data$colour, proportion_threshold = 0.5)
+assign.Majority(data, 'id', 'colour', proportion_threshold = 0.5)
 #>   id colour
 #> 1  1   red
 #> 2  2 green
@@ -92,37 +92,29 @@ data <- data.frame(
   id = c(1, 1, 1, 2, 2, 3),
   colour = c("red", "red", "blue", "green", "yellow", "green"),
   shape = c("circle", "square", "triangle", "circle", "square", "triangle"),
-  size = c(10, 20, 30, 40, 50, 60)
+  size = as.character(c(10, 20, 30, 40, 50, 60))
 )
 
 result <- assign.Majority(data = data,
-                          identifier = data$id,
-                          column = data$colour,
+                          identifier = 'id',
+                          column = 'colour',
                           proportion_threshold  = 0.7)
 
-result$shape <- assign.Majority(data = data,
-                                identifier = data$id,
-                                column = data$shape,
-                                proportion_threshold = 0.5)$variable
+result <- assign.Majority(data = data,
+                          identifier = 'id',
+                          column = 'shape',
+                          proportion_threshold = 0.5)
 
-result$size <- assign.Majority(data = data,
-                               identifier = data$id,
-                               column = data$size,
-                               proportion_threshold = 0.5)$variable
-
-print(result)
+result <- assign.Majority(data = data,
+                          identifier = 'id',
+                          column = 'size',
+                          proportion_threshold = 0.5)
 
 ```
 
 ## Issues and improvements
 
 Please submit bugs, issues and suggested improvements on [Github](https://github.com/Thomas-Browne/voxp/issues)
-
-Known issues:
-
--   It doesn't work
-
--   Should be able to define column names without the dataframe
 
 ## Contributing
 
