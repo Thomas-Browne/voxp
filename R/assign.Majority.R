@@ -14,7 +14,7 @@
 #'
 #' @examples assign.Majority(Employee_data, 'Employee_ID', 'Start_time')
 #' @examples assign.Majority(Patient_data,'Patient_number', 'Country_of_birth', 0.7)
-#' @examples assign.Majority(data = Patient_data, identifier = 'Patient_number', column = 'Country_of_birth', proportion_threshold = 0.5)
+#' @examples assign.Majority(data = Patient_data, identifier = 'Patient_number', column = 'Country_of_birth', proportion_threshold = 0.4)
 #'
 #' @examples Country <- assign.Majority(Patient_data, 'Patient_number', 'Country_of_birth', 0.7)
 #' Patient_data %>% left_join(Country, by = 'Patient_number')

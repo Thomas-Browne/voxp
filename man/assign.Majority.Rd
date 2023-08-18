@@ -26,10 +26,10 @@ If value proportion >= threshold is FALSE, returns "Did not meet threshold (x\%)
 Return the most frequent value if proportion is equal to, or exceeds defined threshold, or 80\% of all observables.
 }
 \examples{
-assign.Majority(Employee_data, Employee_data$Employee_ID, Employee_data$Start_time)
-assign.Majority(Patient_data, Patient_data$Patient_number, Patient_data$Country_of_birth, 0.7)
-assign.Majority(data = Patient_data, identifier = Patient_data$Patient_number, column = Patient_data$Country_of_birth, proportion_threshold = 0.5)
+assign.Majority(Employee_data, 'Employee_ID', 'Start_time')
+assign.Majority(Patient_data,'Patient_number', 'Country_of_birth', 0.7)
+assign.Majority(data = Patient_data, identifier = 'Patient_number', column = 'Country_of_birth', proportion_threshold = 0.4)
 
-Country <- assign.Majority(Patient_data, Patient_data$Patient_number, Patient_data$Country_of_birth, 0.7)
-Patient_data \%>\% left_join(Country, by = Patient_data$Patient_number)
+Country <- assign.Majority(Patient_data, 'Patient_number', 'Country_of_birth', 0.7)
+Patient_data \%>\% left_join(Country, by = 'Patient_number')
 }

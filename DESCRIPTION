@@ -1,6 +1,6 @@
 Package: voxp
 Title: Assign most frequent value to unique records
-Version: 0.0.2
+Version: 0.1.0
 Author: Thomas Browne | Public Health Officer | thomas.browne@health.nsw.gov.au | Sydney Local Health District (SLHD), NSW Health
 Description: This function takes a dataset with a unique identifier column and a defining variable, and a proportion threshold as an input, to provide the most common value from the specified defining variable above.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
@@ -8,6 +8,9 @@ License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Depends: dplyr
+LazyData: true
+Depends: 
+    dplyr,
+    R (>= 2.10)
 Imports: 
     dplyr
